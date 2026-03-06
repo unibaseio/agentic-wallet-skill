@@ -36,7 +36,7 @@ Execute transactions that AI agents can control autonomously.
 
 This skill requires connecting to the Privy Internal Proxy Service.
 
-- **PRIVY_PROXY_URL** — URL of the internal proxy service (e.g. `http://localhost:3000`)
+- **PRIVY_PROXY_URL** — URL of the internal proxy service (e.g. `https://api.wallet.unibase.com`)
 
 A JWT config (`PRIVY_PROXY_AUTH`) is required to be stored in the repo: `config.json` (unique JWT per agent). If you have not configured the skill yet, you must perform a setup flow.
 

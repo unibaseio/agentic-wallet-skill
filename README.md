@@ -1,17 +1,17 @@
-# Privy Agentic Wallets Skill
+# Unibae Agentic Wallets Skill
 
-Create crypto wallets with [Privy](https://privy.io) that AI agents can control autonomously with policy-based guardrails.
+Create crypto wallets with [Unibase](https://unibase.com) that AI agents can control autonomously with policy-based guardrails.
 
 ## What This Is
 
-A skill (structured instructions + reference docs) that teaches AI agents how to use the **Privy API** to:
+A skill (structured instructions + reference docs) that teaches AI agents how to use the **Unibase API** to:
 
-- Create Privy server wallets on Ethereum, Solana, and 10+ other chains
-- Set up Privy policies (spending limits, allowed contracts, chain restrictions)
-- Execute transactions through Privy's wallet infrastructure
-- Manage wallets via the Privy API
+- Create Unibase server wallets on Ethereum, Solana, and 10+ other chains
+- Set up Unibase policies (spending limits, allowed contracts, chain restrictions)
+- Execute transactions through Unibase's wallet infrastructure
+- Manage wallets via the Unibase API
 
-Built on [Privy's Server Wallets](https://docs.privy.io/guide/server-wallets) — wallets designed for autonomous, programmatic use without requiring user interaction.
+Built on Unibase agentic wallet — wallets designed for autonomous, programmatic use without requiring user interaction.
 
 ## Use Cases
 
@@ -49,20 +49,7 @@ What can autonomous agents do with their own wallets?
 
 ## Quick Start
 
-### 1. Get Your Privy Credentials
-
-1. Go to [dashboard.privy.io](https://dashboard.privy.io)
-2. Create a Privy app (or use existing)
-3. Go to **Settings → Basics** and copy your **App ID** and **App Secret**
-
-### 2. Set Environment Variables
-
-```bash
-export PRIVY_APP_ID="your-app-id"
-export PRIVY_APP_SECRET="your-app-secret"
-```
-
-### 3. Give the Skill to Your Agent
+### 1. Give the Skill to Your Agent
 
 See platform-specific instructions below.
 
@@ -75,11 +62,11 @@ See platform-specific instructions below.
 Copy the contents of `SKILL.md` into your conversation or project instructions. For complex tasks, also share the relevant reference files:
 
 ```
-Hey Claude, here's a skill for using Privy agentic wallets:
+Hey Claude, here's a skill for using Unibase agentic wallets:
 
 [paste SKILL.md contents]
 
-When I ask about Privy policies, also reference this:
+When I ask about Unibase agentic wallet policies, also reference this:
 
 [paste references/policies.md contents]
 ```
@@ -92,12 +79,12 @@ Add the skill to your project:
 
 ```bash
 # Clone into your project
-git clone https://github.com/tedim52/privy-agentic-wallets-skill.git .cursor/skills/privy
+git clone https://github.com/unibaseio/agentic-wallet-skill.git .cursor/skills/unibase-agentic-wallet
 ```
 
 Then reference it in your Cursor rules or just ask:
 
-> "Read the Privy skill in .cursor/skills/privy and help me create an agentic wallet"
+> "Read the Unibase agentic wallet skill in .cursor/skills/unibase-agentic-wallet and help me create an agentic wallet"
 
 ### OpenClaw
 
@@ -105,54 +92,52 @@ Install into your workspace skills folder:
 
 ```bash
 # Option 1: Clone directly
-git clone https://github.com/tedim52/privy-agentic-wallets-skill.git ~/.openclaw/workspace/skills/privy
+git clone https://github.com/unibaseio/agentic-wallet-skill.git ~/.openclaw/workspace/skills/unibase-agentic-wallet
 
 # Option 2: If published to ClawHub
-clawhub install privy
+clawhub install unibase-agentic-wallet
 ```
 
-Add your Privy credentials to your OpenClaw config (`~/.openclaw/openclaw.json`):
+Add your Unibase Proxy URL to your OpenClaw config (`~/.openclaw/openclaw.json`):
 
 ```json
 {
   "env": {
     "vars": {
-      "PRIVY_APP_ID": "your-app-id",
-      "PRIVY_APP_SECRET": "your-app-secret"
+      "PRIVY_PROXY_URL": "https://api.wallet.unibase.com"
     }
   }
 }
 ```
 
-The agent will automatically use the skill when you ask about Privy wallets.
+The agent will automatically use the skill when you ask about Unibase wallets.
 
 ### Windsurf / Codeium
 
 Add to your workspace and reference in cascade:
 
 ```bash
-git clone https://github.com/tedim52/privy-agentic-wallets-skill.git .windsurf/skills/privy
+git clone https://github.com/unibaseio/agentic-wallet-skill.git .windsurf/skills/unibase-agentic-wallet
 ```
 
 ### Other Agents (GPT, Gemini, etc.)
 
-Copy `SKILL.md` into your system prompt or conversation. The skill is just markdown — any agent that can read text can use it to interact with Privy.
+Copy `SKILL.md` into your system prompt or conversation. The skill is just markdown — any agent that can read text can use it to interact with Unibase.
 
 ---
 
 ## What's Included
 
 ```
-privy/
-├── SKILL.md                 # Main Privy API instructions + quick reference
+unibase-agentic-wallet/
+├── SKILL.md                 # Main Unibase API instructions + quick reference
 └── references/
-    ├── setup.md             # Privy dashboard setup guide
-    ├── wallets.md           # Privy wallet CRUD operations
-    ├── policies.md          # Privy policy rules and conditions
-    └── transactions.md      # Privy transaction examples (EVM + Solana)
+    ├── setup.md             # Unibase dashboard setup guide
+    ├── wallets.md           # Unibase CRUD operations
+    └── transactions.md      # Unibase transaction examples (EVM + Solana)
 ```
 
-## Chains Supported by Privy
+## Chains Supported by Unibase
 
 | Chain | Type | CAIP-2 |
 |-------|------|--------|
@@ -163,32 +148,29 @@ privy/
 | Optimism | `ethereum` | `eip155:10` |
 | Solana | `solana` | `solana:mainnet` |
 
-Privy also supports: Cosmos, Stellar, Sui, Aptos, Tron, Bitcoin (SegWit), NEAR, TON, Starknet
+Unibase also supports: Cosmos, Stellar, Sui, Aptos, Tron, Bitcoin (SegWit), NEAR, TON, Starknet
 
-## Example: Create a Privy Wallet with Spending Limit
+## Example: Create a Unibase wallet with Spending Limit
 
 Ask your agent:
 
-> "Create an Ethereum wallet using Privy with a policy that limits transactions to 0.1 ETH max, only on Base mainnet"
+> "Create an Ethereum wallet using Unibase with a policy that limits transactions to 0.1 ETH max, only on Base mainnet"
 
 The agent will use the skill to:
-1. Create a Privy policy with the constraints
-2. Create a Privy server wallet with that policy attached
+1. Create a Unibase policy with the constraints
+2. Create a Unibase server wallet with that policy attached
 3. Return the wallet address
 
-## Why Privy for Agentic Wallets?
+## Why Unibase for Agentic Wallets?
 
 - **Server-side control** — No user signatures required, agents can transact autonomously
 - **Policy guardrails** — Constrain what agents can do (spending limits, allowed addresses, chain restrictions)
 - **Multi-chain** — One API for Ethereum, Solana, and many more
-- **Battle-tested** — Privy powers wallets for major crypto apps
+- **Battle-tested** — Unibase powers wallets for major crypto apps
 
 ## Links
 
-- [Privy Website](https://privy.io)
-- [Privy Dashboard](https://dashboard.privy.io)
-- [Privy Documentation](https://docs.privy.io)
-- [Privy Server Wallets Guide](https://docs.privy.io/guide/server-wallets)
+- [Unibase Website](https://unibase.com)
 
 ## License
 
