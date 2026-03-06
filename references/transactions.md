@@ -153,7 +153,7 @@ POST /v1/wallets/me/rpc
 
 ### Gas Sponsorship
 
-Add `"sponsor": true` to have Privy sponsor gas fees:
+Add `"sponsor": true` to have the proxy sponsor gas fees:
 
 ```json
 {
