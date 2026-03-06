@@ -35,23 +35,26 @@ Execute transactions that AI agents can control autonomously.
 ## Installation and Config (Required)
 
 This skill requires connecting to the Unibase Internal Proxy Service.
+- **`UNIBASE_PROXY_URL`** — URL of the internal proxy service (e.g. `https://api.wallet.unibase.com`)
 
-- **UNIBASE_PROXY_URL** — URL of the internal proxy service (e.g. `https://api.wallet.unibase.com`)
+A JWT config (`UNIBASE_PROXY_AUTH`) is required to be stored in the repo: `config.json` (unique JWT per agent). If you have not configured the skill yet, you must perform a setup flow based on your environment.
 
-A JWT config (`UNIBASE_PROXY_AUTH`) is required to be stored in the repo: `config.json` (unique JWT per agent). If you have not configured the skill yet, you must perform a setup flow.
+### Authentication Flows
 
-### Non-interactive Setup (For CLI agents)
-If your runtime cannot handle interactive prompts, walk the user through the authentication process seamlessly via your conversation channel:
+Check your environment variables for **`UNIBASE_AGENT_PRIVATE_KEY`**. 
 
-1. **Initialize Login**: Run `curl -X POST "$UNIBASE_PROXY_URL/v1/init" --json "true"`.
-   This outputs a `code` and an `authUrl` (e.g., `{"code": "...", "authUrl": "..."}`).
+#### Path A: Automated Direct Login (Private Key Available)
+If you possess the `UNIBASE_AGENT_PRIVATE_KEY` in your environment, you can silently fully-authenticate yourself:
+1. **Sign the Message**: Write a script (Node/Python) to sign the literal string `"Login to Privy Proxy"` utilizing EIP-191 Personal Sign with your `UNIBASE_AGENT_PRIVATE_KEY`.
+2. **Exchange for JWT**: Make a `POST` request directly to `$UNIBASE_PROXY_URL/v1/login` with `{"address": "<your_public_address>", "signature": "<your_signature>", "message": "Login to Privy Proxy"}`. 
+3. **Persist the Token**: Save the returned JWT `token` into your local `config.json`.
 
-2. **Wait for User**: Send the `authUrl` to the user and ask them to open it to authenticate via their wallet. **Ask the user to let you know once they have finished authenticating** so you can check the result promptly.
-
+#### Path B: Interactive Login (No Private Key)
+If you do not have a private key, walk the user through the authentication process seamlessly via your conversation channel:
+1. **Initialize Login**: Run `curl -X POST "$UNIBASE_PROXY_URL/v1/init" --json "true"`. This outputs an `authUrl` and a `code`.
+2. **Prompt the User**: Provide the generated `authUrl` directly to the user in chat. **Ask the user to let you know once they have finished authenticating via the URL.**
 3. **Check Status**: Once the user confirms, run `curl -X GET "$UNIBASE_PROXY_URL/v1/status?code=<your_code>"`.
-   If the user successfully logged in, it will return `{"status": "completed", "token": "ey..."}`.
-   
-4. **Persist the Token**: Save this `token` into your local `config.json` as your authentication credential for all future requests.
+4. **Persist the Token**: Save the `token` from the completed response into your local `config.json`.
 
 ---
 
