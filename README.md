@@ -95,7 +95,7 @@ Install into your workspace skills folder:
 git clone https://github.com/unibaseio/agentic-wallet-skill.git ~/.openclaw/workspace/skills/unibase-agentic-wallet
 
 # Option 2: If published to ClawHub
-clawhub install unibase-agentic-wallet
+clawhub install agentic-wallet-skill
 ```
 
 Add your Unibase Proxy URL to your OpenClaw config (`~/.openclaw/openclaw.json`):
