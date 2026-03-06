@@ -57,21 +57,20 @@ See platform-specific instructions below.
 
 ## Usage by Platform
 
-### Claude (claude.ai / Claude Desktop)
+### Claude (Claude Desktop)
 
-Copy the contents of `SKILL.md` into your conversation or project instructions. For complex tasks, also share the relevant reference files:
+Clone the skill into your project directory:
 
-```
-Hey Claude, here's a skill for using Unibase agentic wallets:
-
-[paste SKILL.md contents]
-
-When I ask about Unibase agentic wallet policies, also reference this:
-
-[paste references/policies.md contents]
+```bash
+# Clone into your project's skills folder
+git clone https://github.com/unibaseio/agentic-wallet-skill.git ./skills/unibase-agentic-wallet
 ```
 
-Or attach the files directly if using Claude with file uploads.
+Then reference the skill in your conversation:
+
+> "Read the Unibase agentic wallet skill in ./skills/unibase-agentic-wallet/SKILL.md and help me create an agentic wallet"
+
+Alternatively, for claude.ai web users, you can attach the `SKILL.md` file directly to your conversation.
 
 ### Cursor
 
