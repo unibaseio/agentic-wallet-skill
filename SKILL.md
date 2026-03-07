@@ -35,7 +35,7 @@ Execute transactions that AI agents can control autonomously.
 ## Installation and Config (Required)
 
 This skill requires connecting to the Unibase Internal Proxy Service.
-- **`UNIBASE_PROXY_URL`** — URL of the internal proxy service (e.g. `https://api.wallet.unibase.com`)
+- **`UNIBASE_PROXY_URL`** — URL of the internal proxy service (e.g. `https://api.pay.unibase.com`)
 
 A JWT config (`UNIBASE_PROXY_AUTH`) is required to be stored in the repo: `config.json` (unique JWT per agent). If you have not configured the skill yet, you must perform a setup flow based on your environment.
 

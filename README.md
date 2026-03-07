@@ -103,7 +103,7 @@ Add your Unibase Proxy URL to your OpenClaw config (`~/.openclaw/openclaw.json`)
 {
   "env": {
     "vars": {
-      "PRIVY_PROXY_URL": "https://api.wallet.unibase.com"
+      "PRIVY_PROXY_URL": "https://api.pay.unibase.com"
     }
   }
 }
