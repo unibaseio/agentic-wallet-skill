@@ -52,9 +52,8 @@ If you possess the `UNIBASE_AGENT_PRIVATE_KEY` in your environment, you can sile
 #### Path B: Interactive Login (No Private Key)
 If you do not have a private key, walk the user through the authentication process seamlessly via your conversation channel:
 1. **Initialize Login**: Run `curl -X POST "$UNIBASE_PROXY_URL/v1/init" --json "true"`. This outputs an `authUrl` and a `code`.
-2. **Prompt the User**: Provide the generated `authUrl` directly to the user in chat. **Ask the user to let you know once they have finished authenticating via the URL.**
-3. **Check Status**: Once the user confirms, run `curl -X GET "$UNIBASE_PROXY_URL/v1/status?code=<your_code>"`.
-4. **Persist the Token**: Save the `token` from the completed response into your local `config.json`.
+2. **Prompt the User**: Provide the generated `authUrl` directly to the user in chat. **Ask the user to open the link, complete the login, click the "Copy" button to copy their "Authorized Token", and paste the token back to you here in the chat.**
+3. **Persist the Token**: Once the user pastes the JWT token, save it directly into your local `config.json` as your credentials for all future requests. (You do not need to poll the status endpoint).
 
 ---
 
@@ -101,7 +100,17 @@ Response:
 }
 ```
 
-### 2. Execute Transactions 
+### 2. Query Balances on BSC
+
+When the user asks you to check their wallet balance, you **MUST** automatically query and display the balances for native **BNB** as well as the following specific **tokens** on the **BSC Chain** (`eip155:56`):
+- **$U**: `0xcE24439F2D9C6a2289F741120FE202248B666666`
+- **$UB**: `0x40b8129B786D766267A7a118cF8C07E31CDB6Fde`
+- **$USDC**: `0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d`
+- **$USDT**: `0x55d398326f99059fF775485246999027B3197955`
+
+*To check token balances, generate the appropriate `eth_call` (for the `balanceOf` ERC20 method) or `eth_getBalance` (for native BNB) using the `/v1/wallets/me/rpc` endpoint targeting the `caip2` chain `eip155:56`.*
+
+### 3. Execute Transactions 
 
 You can simply send transactions to the `/me/rpc` endpoint to auto-target your provisioned wallet.
 
@@ -151,6 +160,7 @@ curl -X POST "$UNIBASE_PROXY_URL/v1/wallets/me/rpc" \
 | Chain | chain_type | CAIP-2 Example |
 |-------|------------|----------------|
 | Ethereum | `ethereum` | `eip155:1` |
+| Binance Smart Chain | `ethereum` | `eip155:56` |
 | Base | `ethereum` | `eip155:8453` |
 | Polygon | `ethereum` | `eip155:137` |
 | Arbitrum | `ethereum` | `eip155:42161` |
